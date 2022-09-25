@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Moritz Gnann</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;800&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="wrapper">
+            <section class="header" id="header">
+                <div class="headerBG"></div>
+                <nav>
+                    <div class="logo">
+                        <ul>
+                            <li><a class="logo" href="index.html"><b>Moritz Gnann</b></a></li>
+                        </ul>
+                    </div>
+                    <div class="nav-links">
+                        <ul>
+                            <li><a href="index.html#headlineProjects"><b>projects</b></a></li>
+                            <li><a href="index.html#aboutHeadline"><b>about</b></a></li>
+                            <li><a href="index.html#form"><b>contact</b></a></li>
+                        </ul>
+                    </div>
+                </nav>        
+            </section>
+    
+            <div class="Background">
+                <img class="bg2" src="images/noise.png">
+          </div>
+    
+            <section class="everypaintHeadline">
+                <h2><b>hopohopo</b></h2>
+                <h4>Eine VR Erfahrung über soziale Phobie auf der Oculus Quest</h4>
+            </section>
+        </section>
+        <section class="text">
+            <h4>Hopohopo ist eine VR Erfahrung über soziale Phobie, mit dem Zweck über dieses Leiden aufzuklären und Unbetroffene für das Thema zu sensibilisieren.<p><br>In der Erfahrung werden verschiedene Situationen aus der Sicht einer betroffenen Person von sozialer Phobie gezeigt, um den Nutzern einen Eindruck über die Gefühlswelt der Betroffenen zu vermitteln. Dazu werden verschiedene stilistische Mittel eingesetzt, um die Gefühle darzustellen, wie zu Beispiel Controller Vibration, Visuelle Effekte oder Ton. Die dargestellten Situationen wurden in Zusammenarbeit mit Betroffenen von sozialer Phobie und Mitgliedern des Bundesverband der Selbsthilfe Soziale Phobie (VSSP e.V.) entworfen.</p><p><br>Das Projekt habe ich gemeinsam mit dem Forschungsprojekt DISA (Digitale Inklusion im Kontext sozialer Angststörung) der FH Potsdam und meiner Kommilitonin Julia Drost entwickelt. Mein Aufgabenbereich war vor allem die technische und visuelle Entwicklung der VR Erfahrung.</p></h4>
+        </section>
+            <section class="hopohopoTrailer">
+                <video class="video" poster="images/hopohopo.png" muted autoplay loop controls>
+                    <source src="videos/hopohopoSubtitles.mp4" type="video/mp4">
+                    Your browser does not support mp4 videos!               
+                  </video>
+            </section>
+            <section class="text">
+                <h4>Ein technisch interessanter Aspekt der Erfahrung ist die visuelle Darstellung der Angst. Dazu habe ich einen Shader entwickelt, welcher die Rendertextur der VR Kamera als Input nimmt, verändert und auf ein Objekt projiziert, welches an die VR Kamera geheftet ist. Dieses Objekt fungiert sozusagen als Brille für die Sicht von verschiedenen visuellen Effekten, welche im Shader und dem zugehörigen Material eingestellt und animiert werden können.<p><br>Das hat den Vorteil der großen Freiheit in der Form der visuellen Effekte, aber auch die Performance auf mobilen Geräten (hier Oculus Quest) ist um einiges besser, als bei den "normalen" Post-Processing Effekten.</p></h4>
+            </section>
+            <section class="gridContainer">
+                <div class="image-grid">
+                    <img src="images/hopohopo(4).png" alt="hopohopo">
+                    <img src="images/hopohopo(1).png" alt="hopohopo">
+                    <img class="image-grid-col-2 image-grid-row-2" src="images/hopohopo(5).png" alt="hopohopo">
+                    <img src="images/hopohopo(3).png" alt="hopohopo">
+                    <img src="images/hopohopo(2).png" alt="hopohopo">
+                </div>
+                <section class="headlineRecommendations">
+                    <b>Check out my other projects!</b>
+                </section>
+                <section class="recommendations">
+                    <nav>
+                        <figure>
+                            <ul>
+                                <li><a href="everypaint.html"><img src="images/everypaint.jpg">
+                                <figcaption><h1><b>everypaint</b><br></h1></figcaption>    
+                                </a></li>                                               
+                            </ul>                    
+                        </figure>
+                        <figure>
+                            <ul>
+                                <li><a href="auto-nom.html"><img src="images/autonom.png"><figcaption><h1><b>AUTO-NOM</b><br></h1></figcaption>                       
+                                </a></li>                                               
+                            </ul>                    
+                        </figure>
+                        <figure>
+                            <ul>
+                                <li><a href="kingspray.html"><img src="images/kingspray.jpg"><figcaption><h1><b>Worldbuilding</b><br></h1></figcaption></a></li>                        
+                            </ul>                   
+                        </figure>
+                    </nav>
+                </section>
+            </section>
+            
+    
+            
+            <footer>Moritz Gnann // moritzgnann@gmx.de // Berlin</footer>
+        </div>
+        <a href="#header">
+            <section class="upButton">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+              </svg>                
+        </section>
+        </a>
+    </body>
+</html>
