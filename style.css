@@ -84,7 +84,8 @@ nav{
 }
 .nav-links ul li:hover{
 
-    scale: 115%
+    -webkit-transform: scale(115%);
+    transform: scale(115%);
 }
 
 .upButton svg{
@@ -102,7 +103,8 @@ nav{
 .upButton svg:hover{
     text-decoration: none;
     color: rgba(235, 235, 235, 0.8);
-    scale: 120%;
+    -webkit-transform: scale(120%);
+    transform: scale(120%);
 }
 
 /*LOGO*/
@@ -132,7 +134,8 @@ nav{
     font-size: 1.5rem;
 }
 .logo:hover{
-scale: 110%;
+    -webkit-transform: scale(110%);
+    transform: scale(110%);
 }
 
 
@@ -215,7 +218,8 @@ a{
     transition: 0.5s;       
 }
 .content a:hover{
-    scale: 103%;
+    -webkit-transform: scale(103%);
+    transform: scale(103%);
 }
 .content a:hover img{
     opacity: 35%;
@@ -281,7 +285,8 @@ footer {
 
 .recommendations figure:hover img{
     opacity: 30%;
-    scale: 105%;
+    -webkit-transform: scale(105%);
+    transform: scale(105%);
     
 }
 .recommendations figure:hover figcaption{
@@ -400,7 +405,8 @@ font-size: 1.5rem;
     transition: 0.3s;
 }
 .form button:hover{
-    scale: 105%;
+    -webkit-transform: scale(105%);
+    transform: scale(105%);
 }
 
 
