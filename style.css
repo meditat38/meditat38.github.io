@@ -740,3 +740,25 @@ video[poster]{
     transform: translateY(230%) translateZ(-25px) scale(4.5) rotateZ(20deg);
 }
   }
+
+@media only screen and (max-width: 450px) {
+  .headlineProjects{
+
+    padding-top: 300px;
+
+  }
+}
+@media only screen and (max-width: 350px) {
+    .headlineProjects{
+  
+      padding-top: 400px;
+  
+    }
+  }
+  @media only screen and (max-width: 280px) {
+    .headlineProjects{
+  
+      padding-top: 500px;
+  
+    }
+  }
