@@ -557,6 +557,110 @@ video[poster]{
 
   /*MOBILE VERSION*/
 
+  @media only screen and (min-width: 2400px){
+    .headerBG{
+
+        transform: translateX(calc(100vw - 35rem));
+    }
+    .nav-links ul li a{
+        font-size: 1.5rem;
+        
+    }
+    .logo ul li a{
+        font-size: 2rem;
+    }
+    .logo2{
+        font-size: 2rem;
+    }
+    .hello{
+        font-size: 5rem;   
+    }
+    .hello h4{
+        font-size: 3rem;
+    }
+    .headlineProjects{
+        height: 6rem;
+        font-size: 4rem;
+    }
+    .aboutHeadline{
+        font-size: 2rem;
+    }
+    .aboutHeadline h1{
+        font-size: 6rem;
+    }
+    .everypaintHeadline{
+        font-size: 2rem;
+    }
+    .everypaintHeadline h2{
+        line-height: 5rem;
+        font-size: 5rem;
+        padding-bottom: 1rem;    
+    }
+    .everypaintHeadline h4{
+        font-size: 2rem;
+    }
+    .text{
+        font-size: 2rem;
+    }.headlineRecommendations{
+        font-size: 3rem;
+    }
+    footer {    
+        font-size: 1.5rem;
+    }
+}
+  @media only screen and (min-width: 3400px){
+    .headerBG{
+
+        transform: translateX(calc(100vw - 48rem));
+    }
+    .nav-links ul li a{
+        font-size: 2rem;
+        
+    }
+    .logo ul li a{
+        font-size: 3rem;
+    }
+    .logo2{
+        font-size: 3rem;
+    }
+    .hello{
+        font-size: 6rem;   
+    }
+    .hello h4{
+        font-size: 3.5rem;
+    }
+    .headlineProjects{
+        height: 8rem;
+        font-size: 5rem;
+    }
+    .aboutHeadline{
+        font-size: 3rem;
+    }
+    .aboutHeadline h1{
+        font-size: 7rem;
+    }
+    .everypaintHeadline{
+        font-size: 2rem;
+    }
+    .everypaintHeadline h2{
+        line-height: 7rem;
+        font-size: 7rem;
+        padding-bottom: 1rem;    
+    }
+    .everypaintHeadline h4{
+        font-size: 3rem;
+    }
+    .text{
+        font-size: 2.5rem;
+    }.headlineRecommendations{
+        font-size: 4rem;
+    }
+    footer {    
+        font-size: 1.5rem;
+    }
+
+  }
+
   @media only screen and (max-width: 1000px) {
     video{
         width: calc(100% - 20px);
