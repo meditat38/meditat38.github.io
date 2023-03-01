@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Moritz Gnann</title>
+        <link rel="stylesheet" href="style.css">
+        <script defer src="app.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;800&family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="wrapper">
+            <section class="header hidden2" id="header">
+                <div class="headerBG"></div>
+                <nav>
+                    <div class="logo">
+                        <ul>
+                            <li><a class="logo" href="indexDE.html"><b>Moritz Gnann</b></a></li>
+                        </ul>
+                    </div>
+                    <div class="nav-links">
+                        <ul>
+                            <li><a href="indexDE.html#headlineProjects"><b>projects</b></a></li>
+                            <li><a href="indexDE.html#aboutHeadline"><b>about</b></a></li>
+                            <li><a href="indexDE.html#form"><b>contact</b></a></li>
+                        </ul>
+                    </div>
+                </nav>        
+            </section>
+    
+            <div class="Background">
+                <img class="bg2" src="images/noise2.png">
+          </div>
+    
+            <section class="everypaintHeadline">
+                <h2><b>AUTO-NOM</b></h2>
+                <h4>Ich sehe was, das du nicht siehst</h4>
+            </section>
+            <section class="text">
+                <h4>Automobile sammeln und verarbeiten schon heute eine Vielzahl von Sensordaten: Ultraschall überwacht den Nahbereich z.B. beim Einparken, Radarsysteme halten den Abstand oder führen Notbremsungen aus. In autonom fahrenden Autos erzeugt Lidar-Laserscanning dreidimensionale Abbilder der physischen Umgebung und durch Kamerabilder lassen sich Objekte der Umgebung mit Hilfe von Bildverarbeitung klassifizieren. Diese unterschiedlichen Informationen über die Umgebung des fahrenden Autos werden in Echtzeit verarbeitet und um weitere Sensordaten, wie Beschleunigungswerte und GPS-Koordinaten ergänzt, so dass ein Auto ohne Hilfe und unterstützenden Eingriff eines Menschen, sich im komplexen Straßenverkehr möglichst sicher und unfallfrei bewegen kann. </h4>
+            </section>
+            <section class="hopohopoTrailer">
+                <video class= "video" poster="images/autonom.png" muted autoplay loop controls>
+                    <source src="videos/DSCF4766.mp4" type="video/mp4">
+                    Your browser does not support mp4 videos!               
+                  </video>
+            </section>
+            <section class="text">
+                <h4>In der VR-Erfahrung "AUTO-NOM - Ich sehe was, das du nicht siehst" von Leon Döring und Moritz Gnann, werden die scheinbar unendlich großen Datenmengen, die ein selbstfahrendes Automobil in kürzester Zeit automatisiert sammelt und in Echtzeit verarbeitet, untersucht. Anhand eines über das Internet frei verfügbaren 2,3 Terabyte großen Datensatzes von Sensorinformationen eines Audi-Testfahrzeuges (Audi Autonomous Driving Dataset A2D2, 2020) wird in dieser Anwendung mit Hilfe von VR-Technik dieser gleichzeitig hochpräzise und dennoch überraschend spekulative Blick auf die Stadt für das menschliche Auge sichtbar gemacht. Anhand einer ca. 15 minütigen Testfahrt durch die Münchner Innenstadt werden Daten aus unterschiedlichen Sensorsystemen visuell aufgearbeitet. Auf einer Autositzbank sitzend können die dynamischen 3D-Daten entweder frei per VR-Brille oder über eine dreifache Videoprojektion im Galerieraum betrachtet werden. Die zur Entscheidungsfindung des Autos zentrale Erkennung der Umgebungs-Objekte (Fußgänger, Lastwagen, Fahrrad, Ampel usw.), ausgedrückt als prozentuale Wahrscheinlichkeiten, werden ebenso in den Betrachtungsraum eingeblendet.  Weiterhin werden nicht optische Informationen wie Beschleunigungswerte oder Lenkwinkel in Klangmuster umgerechnet, die die virtuelle Bewegung des PKW durch München raumfüllend unterstützen.</h4>
+            </section>
+
+            <section class="gridContainer3">
+                <div class="image-grid3">
+                    <img src="images/DSCF1300.jpeg" alt="autonomScreenshot">
+                    <img src="images/Screenshot 2022-08-01 000804.jpeg" alt="autonomScreenshot">
+                    <img class="image-grid-col-2 image-grid-row-2" src="images/DSCF1473.jpeg" alt="autonomScreenshot">
+                    <img src="images/Screenshot 2022-08-01 002729.jpeg" alt="autonomScreenshot">
+                    <img src="images/Screenshot 2022-08-01 002735.jpeg" alt="autonomScreenshot">
+                    <img class="image-grid-col-2 image-grid-row-3" src="images/Isometrie.jpeg" alt="autonomScreenshot">                   
+                </div>        
+            </section>
+
+            <section class="text">
+                <h4>Meine Aufgabe in dieser Arbeit war es die von Leon Döring für mich aufgearbeiteten Sensordaten visuell in VR darzustellen. Dabei ging es vor Allem darum, die Punktwolken, welche durch die Lidar-Laserscanner entstehen, in Echtzeit in VR darzustellen. Jede Punktwolke besteht aus ca. 200 000 Punkten und ändert sich 30 Mal in der Sekunde, was bei einer 15 minütigen Testfahrt ca. 27 000 Punktwolken bedeutet.<p><br>Dafür habe ich die Positionskoordinaten und Helligkeitswerte der einzelnen Punkte in HDR Farbinformationen umgewandelt und als einzelne Pixel in einer .exr Bilddatei exportiert (siehe Bild unten). Diese Farbinformationen können dann in Unitys Vfx-Graphen eingelesen werden und wieder zu Positionsdaten umgewandelt werden, mit welchen dann die einzelnen Punkte durch den Vfx-Graphen gesetzt werden können. Mit einer Animation dieser enstanden .exr Bilddateien können so die Punktwolken, ohne viel Rechenleistung, in VR dargestellt werden.</p></h4>
+            </section>
+
+            <section class="gridContainer3">
+                <div class="image-grid3">
+                    <img class="image-grid-col-2 image-grid-row-2" src="images/textures2_1 (0-00-00-00).jpg" alt="positionTexture">                  
+                </div>        
+            </section>
+
+            <section class="text">
+                <h4>Die Arbeit wurde vom 18. bis zum 26. Juni 2022 im Rahmen der Ausstellung der Virtual Summer School GREY BOX TESTING* in der Architekturgalerie München gezeigt (<a href="https://www.architekturgalerie-muenchen.de/programm/detail/news/detail/News/grey-box-testing.html" target="_blank">https://www.architekturgalerie-muenchen.de</a>) und war für den cityvis Wettbewerb 2022 nominiert (<a href="https://www.cityvis.io/competitions/2022/" target="_blank">https://www.cityvis.io/competitions/2022/</a>).</p></h4>
+            </section>
+
+            <section class="gridContainer3">
+                <section class="headlineRecommendations">
+                    <b>Check out my other projects!</b>
+                </section>
+                <section class="recommendations">
+                    <nav>
+                        <figure>
+                            <ul>
+                                <li><a href="hopohopoDE.html"><img src="images/hopohopo.png"><figcaption><h1><b>hopohopo</b><br></h1></figcaption></a></li>                        
+                            </ul>                   
+                        </figure>
+                        <figure>
+                            <ul>
+                                <li><a href="everypaintDE.html"><img src="images/everypaint.jpg">
+                                <figcaption><h1><b>everypaint</b><br></h1></figcaption>    
+                                </a></li>                                               
+                            </ul>                    
+                        </figure>
+                        <figure>
+                            <ul>
+                                <li><a href="kingsprayDE.html"><img src="images/kingspray.PNG"><figcaption><h1><b>Worldbuilding</b><br></h1></figcaption></a></li>                        
+                            </ul>                   
+                        </figure>
+                    </nav>
+                </section>
+            </section>
+                        
+            <footer>Moritz Gnann // moritzgnann@gmx.de // Berlin</footer>
+        </div>
+        <a href="#header">
+            <section class="upButton">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+              </svg>                
+        </section>
+        </a>
+        <div class="languageSelector">
+            <ul>
+                <li><a href="auto-nom.html"><b>EN</b></a></li><li><a href="auto-nomDE.html"><b>DE</b></a></li>
+            </ul>
+        </div>
+    </body>
+</html>

@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Moritz Gnann</title>
         <link rel="stylesheet" href="style.css">
+        <script defer src="app.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap" rel="stylesheet">
@@ -13,14 +14,11 @@
     <body>        
         <div class="wrapper">            
 
-            <section class="header" id="header">
+            <section class="header hidden2" id="header">
                 <div class="headerBG"></div>
+                
                 <nav>
-                    <div class="logo">
-                        <ul>
-                            <li class="logo2" href="#header"><b>Moritz Gnann</b></li>
-                        </ul>
-                    </div>
+
                     <div class="nav-links">
                         <ul>
                             <li><a href="#headlineProjects"><b>projects</b></a></li>
@@ -33,41 +31,49 @@
             </section>
 
             <div class="Background">
-                  <img class="bg1" src="images/noise.png">
+                  <img class="bg2" src="images/noise2.png">
             </div>
 
                        
             <a href="#aboutHeadline">
-                <section class="hello" id="hello">
+                <section class="hello hidden" id="hello">
                     <h1><b>Moritz Gnann</b></h1>
-                    <h4>VR-Gamedevelopment and 3D in general.</h4>
+                    <h4>XR-Gamedevelopment and 3D in general.</h4>
                 </section>
             </a>
             
             <a href="#headlineProjects">
-                <section class="aboutHeadline" id="aboutHeadline">
-                    <h2><b></b></h2>
+                <section class="aboutHeadline hidden" id="aboutHeadline">
                     <h1><b>Hey!</b></h1>
-                    <h4>Ich habe gerade den Kommunikationsdesign-Bachelor an der FH Potsdam abgeschlossen. Im Laufe meines Studiums habe ich mich auf die Bereiche 3D-Design und VR-Gamedevelopment fokussiert. In meiner Arbeit nutze ich hauptsächlich die Programme Unity, Blender und die  Adobe Creative Cloud, ich probiere aber auch immer wieder andere Programme aus. Meine eigenen VR Anwendungen erstelle ich in Unity mit der Programmiersprache C#, ich bin aber eher ein Künstler, als ein Programmierer.</h4>    
+                    <h4>As an XR-Developer with a background in communication design, I have extensive experience developing immersive XR-Applications. I use my skills in 3D modeling and animation with Blender and develop interactive XR-Experiences with Unity. My applications are designed to fully immerse users in an XR environment while providing a high level of functionality and aesthetics.</h4>    
                 </section>
             </a>
             
-            <section class="headlineProjects" >
+            <section class="headlineProjects hidden" >
                 <b>Projects:</b>
             </section>
             <section class="content" id="headlineProjects">
-                <div class="projects-grid">
+                <div class="projects-grid">                    
+                    <div class = "logoo hidden">
+                        <a href="hopohopo.html"><img src="images/hopohopo.png"><figcaption><h1><b>hopohpo</b><br></h1><h4>A VR-Experience about social<br>anxiety on the Oculus Quest</h4></figcaption></a>
+                    </div>
+                    <div class = "logoo hidden">
+                        <a href="auto-nom.html"><img src="images/autonom.png"><figcaption><h1><b>AUTO-NOM</b><br></h1><h4>A VR-Experience about<br>selfdriving cars</h4></figcaption>                       
+                        </a>
+                    </div>
+                    <div class = "logoo hidden">
                         <a href="everypaint.html"><img src="images/everypaint.jpg">
-                            <figcaption><h1><b>everypaint</b><br></h1><h4>Eine VR-Multiplayer-App zum<br>Malen auf der Oculus Quest</h4></figcaption>    
+                            <figcaption><h1><b>everypaint</b><br></h1><h4>A VR-Multiplayer-App to<br>paint on the Oculus Quest</h4></figcaption>    
                         </a>
-                        <a href="hopohopo.html"><img src="images/hopohopo.png"><figcaption><h1><b>hopohpo</b><br></h1><h4>Eine VR-Erfahrung über soziale<br>Phobie auf der Oculus Quest</h4></figcaption></a>
-                        <a href="auto-nom.html"><img src="images/autonom.png"><figcaption><h1><b>AUTO-NOM</b><br></h1><h4>Eine VR-Erfahrung über<br>selbstfahrende Autos</h4></figcaption>                       
-                        </a>
-                        <a href="kingspray.html"><img src="images/kingspray.PNG"><figcaption><h1><b>Kingspray VR Modding</b><br></h1><h4>Custom Maps für Kingspray<br>Graffiti</h4></figcaption></a>                        
+                    </div>
+                    <div class = "logoo hidden">
+                        <a href="kingspray.html"><img src="images/kingspray.PNG"><figcaption><h1><b>Kingspray VR Modding</b><br></h1><h4>Custom maps for Kingspray<br>Graffiti</h4></figcaption></a>                        
+                    </div>
+                        
                 </div>            
             </section>
 
-            <div class="form" id="form">
+            <div class="form hidden" id="form">
                 <div class="headlineForm"><h1>Contact me!</h1></div>
                 
                 <form target="_blank" action="https://formsubmit.co/5c782a19212b22b0f5adb5ce9949384f" method="POST">
@@ -101,6 +107,11 @@
                 </svg>                
             </section>
         </a>
+        <div class="languageSelector">
+            <ul>
+                <li><a href="index.html"><b>EN</b></a></li><li><a href="indexDE.html"><b>DE</b></a></li>
+            </ul>
+        </div>
 
     </body>
 </html>

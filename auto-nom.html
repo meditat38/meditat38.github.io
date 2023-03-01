@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Moritz Gnann</title>
         <link rel="stylesheet" href="style.css">
+        <script defer src="app.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap" rel="stylesheet">
@@ -12,7 +13,7 @@
     </head>
     <body>
         <div class="wrapper">
-            <section class="header" id="header">
+            <section class="header hidden2" id="header">
                 <div class="headerBG"></div>
                 <nav>
                     <div class="logo">
@@ -31,15 +32,15 @@
             </section>
     
             <div class="Background">
-                <img class="bg2" src="images/noise.png">
+                <img class="bg2" src="images/noise2.png">
           </div>
     
             <section class="everypaintHeadline">
                 <h2><b>AUTO-NOM</b></h2>
-                <h4>Ich sehe was, das du nicht siehst</h4>
+                <h4>I see something you don't see</h4>
             </section>
             <section class="text">
-                <h4>Automobile sammeln und verarbeiten schon heute eine Vielzahl von Sensordaten: Ultraschall überwacht den Nahbereich z.B. beim Einparken, Radarsysteme halten den Abstand oder führen Notbremsungen aus. In autonom fahrenden Autos erzeugt Lidar-Laserscanning dreidimensionale Abbilder der physischen Umgebung und durch Kamerabilder lassen sich Objekte der Umgebung mit Hilfe von Bildverarbeitung klassifizieren. Diese unterschiedlichen Informationen über die Umgebung des fahrenden Autos werden in Echtzeit verarbeitet und um weitere Sensordaten, wie Beschleunigungswerte und GPS-Koordinaten ergänzt, so dass ein Auto ohne Hilfe und unterstützenden Eingriff eines Menschen, sich im komplexen Straßenverkehr möglichst sicher und unfallfrei bewegen kann. </h4>
+                <h4>Automobiles already collect and process a wide range of sensor data: Ultrasound monitors the close-range area when parking, for example, while radar systems maintain the distance or perform emergency braking. In autonomously driving cars, lidar laser scanning generates three-dimensional images of the physical surroundings, and camera images allow objects in the environment to be classified using image processing. This diverse information about the driving car's environment is processed in real time and supplemented by other sensor data, such as acceleration values and GPS coordinates, so that a car can move as safely and accident-free as possible in complex road traffic without the assistance and supportive intervention of a human.</h4>
             </section>
             <section class="hopohopoTrailer">
                 <video class= "video" poster="images/autonom.png" muted autoplay loop controls>
@@ -48,7 +49,7 @@
                   </video>
             </section>
             <section class="text">
-                <h4>In der VR-Erfahrung "AUTO-NOM - Ich sehe was, das du nicht siehst" von Leon Döring und Moritz Gnann, werden die scheinbar unendlich großen Datenmengen, die ein selbstfahrendes Automobil in kürzester Zeit automatisiert sammelt und in Echtzeit verarbeitet, untersucht. Anhand eines über das Internet frei verfügbaren 2,3 Terabyte großen Datensatzes von Sensorinformationen eines Audi-Testfahrzeuges (Audi Autonomous Driving Dataset A2D2, 2020) wird in dieser Anwendung mit Hilfe von VR-Technik dieser gleichzeitig hochpräzise und dennoch überraschend spekulative Blick auf die Stadt für das menschliche Auge sichtbar gemacht. Anhand einer ca. 15 minütigen Testfahrt durch die Münchner Innenstadt werden Daten aus unterschiedlichen Sensorsystemen visuell aufgearbeitet. Auf einer Autositzbank sitzend können die dynamischen 3D-Daten entweder frei per VR-Brille oder über eine dreifache Videoprojektion im Galerieraum betrachtet werden. Die zur Entscheidungsfindung des Autos zentrale Erkennung der Umgebungs-Objekte (Fußgänger, Lastwagen, Fahrrad, Ampel usw.), ausgedrückt als prozentuale Wahrscheinlichkeiten, werden ebenso in den Betrachtungsraum eingeblendet.  Weiterhin werden nicht optische Informationen wie Beschleunigungswerte oder Lenkwinkel in Klangmuster umgerechnet, die die virtuelle Bewegung des PKW durch München raumfüllend unterstützen.</h4>
+                <h4>In the VR-Experience "AUTO-NOM - I see something you don't see" by Leon Döring and Moritz Gnann, the seemingly infinitely large amounts of data that a self-driving car automatically collects in a very short time and processes in real time are examined. Using a 2.3 terabyte dataset of sensor information from an Audi test vehicle (Audi Autonomous Driving Dataset A2D2, 2020) that is freely available via the Internet, this application uses VR technology to make this simultaneously highly precise and yet surprisingly speculative view of the city visible to the human eye. Based on an approximately 15-minute test drive through downtown Munich, data from different sensor systems is visually processed. Sitting on a car seat, the dynamic 3D data can be viewed either freely via VR glasses or via a triple video projection in the gallery space. The recognition of surrounding objects (pedestrians, trucks, bicycles, traffic lights, etc.), which is central to the car's decision-making process and is expressed as percentage probabilities, is also superimposed on the viewing space. Furthermore, non-visual information such as acceleration values or steering angles are converted into sound patterns that support the virtual movement of the car through Munich in a space-filling manner.</h4>
             </section>
 
             <section class="gridContainer3">
@@ -63,7 +64,8 @@
             </section>
 
             <section class="text">
-                <h4>Meine Aufgabe in dieser Arbeit war es die von Leon Döring für mich aufgearbeiteten Sensordaten visuell in VR darzustellen. Dabei ging es vor Allem darum, die Punktwolken, welche durch die Lidar-Laserscanner entstehen, in Echtzeit in VR darzustellen. Jede Punktwolke besteht aus ca. 200 000 Punkten und ändert sich 30 Mal in der Sekunde, was bei einer 15 minütigen Testfahrt ca. 27 000 Punktwolken bedeutet.<p><br>Dafür habe ich die Positionskoordinaten und Helligkeitswerte der einzelnen Punkte in HDR Farbinformationen umgewandelt und als einzelne Pixel in einer .exr Bilddatei exportiert (siehe Bild unten). Diese Farbinformationen können dann in Unitys Vfx-Graphen eingelesen werden und wieder zu Positionsdaten umgewandelt werden, mit welchen dann die einzelnen Punkte durch den Vfx-Graphen gesetzt werden können. Mit einer Animation dieser enstanden .exr Bilddateien können so die Punktwolken, ohne viel Rechenleistung, in VR dargestellt werden.</p></h4>
+                <h4>My task in this work was to visually represent the sensor data processed for me by Leon Döring in VR. The main task was to display the point clouds, which are generated by the lidar laser scanners, in real-time in VR. Each point cloud consists of about 200,000 points and changes 30 times a second, which means about 27,000 point clouds during a 15-minute test drive.
+                    <p><br>To do this, I converted the position coordinates and brightness values of the individual points into HDR color information and exported them as individual pixels in an .exr image file (see image below). This color information can then be read into Unity's Vfx graph and converted back to position data, which can then be used to place the individual points through the Vfx graph. With an animation of these .exr image files, the point clouds can be displayed in VR in realtime without much computing power.</p></h4>
             </section>
 
             <section class="gridContainer3">
@@ -73,7 +75,7 @@
             </section>
 
             <section class="text">
-                <h4>Die Arbeit wurde vom 18. bis zum 26. Juni 2022 im Rahmen der Ausstellung der Virtual Summer School GREY BOX TESTING* in der Architekturgalerie München gezeigt (<a href="https://www.architekturgalerie-muenchen.de/programm/detail/news/detail/News/grey-box-testing.html" target="_blank">https://www.architekturgalerie-muenchen.de</a>) und ist für den cityvis Wettbewerb 2022 nominiert (<a href="https://www.cityvis.io/competitions/2022/" target="_blank">https://www.cityvis.io/competitions/2022/</a>).</p></h4>
+                <h4>The work was shown from June 18 to 26, 2022 as part of the Virtual Summer School GREY BOX TESTING* exhibition at the Architekturgalerie München (<a href="https://www.architekturgalerie-muenchen.de/programm/detail/news/detail/News/grey-box-testing.html" target="_blank">https://www.architekturgalerie-muenchen.de</a>) and was nominated for the cityvis competition 2022 (<a href="https://www.cityvis.io/competitions/2022/" target="_blank">https://www.cityvis.io/competitions/2022/</a>).</p></h4>
             </section>
 
             <section class="gridContainer3">
@@ -112,5 +114,10 @@
               </svg>                
         </section>
         </a>
+        <div class="languageSelector">
+            <ul>
+                <li><a href="auto-nom.html"><b>EN</b></a></li><li><a href="auto-nomDE.html"><b>DE</b></a></li>
+            </ul>
+        </div>
     </body>
 </html>
