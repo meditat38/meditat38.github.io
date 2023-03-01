@@ -147,8 +147,8 @@ nav{
     width: 4vw;
     height: 4vw;
     border-radius: 50%;
-    right: 4vw;
-    bottom: 4vw;
+    right: 3vw;
+    bottom: 4vh;
     position:fixed;
     transition: 0.2s;
 }
@@ -161,16 +161,16 @@ nav{
 
 .languageSelector{
     color: rgb(255, 255, 255);
-    left: 4vw;
-    bottom: 2vw;
+    left: 3vw;
+    bottom: 2vh;
     position:fixed;
-    font-size: 2rem;  
+    font-size: 5vh;  
 }
 
 .languageSelector ul li{
     color: rgba(255, 255, 255, 0.205);
     list-style: none;
-    margin-top: -1rem;
+    margin-top: -3.5vh;
     transition: 0.2s;   
 }
 .languageSelector ul li a{
@@ -300,8 +300,8 @@ a{
 
 .content a:hover img{
     opacity: 45%;
-    -webkit-transform: scale(105%);
-    transform: scale(105%);
+    -webkit-transform: scale(103%);
+    transform: scale(103%);
 }
 .content figcaption{
     color: transparent;
@@ -686,6 +686,7 @@ video[poster]{
     footer {    
         font-size: 1.5rem;
     }
+    
 }
   @media only screen and (min-width: 3400px){
     .headerBG{
@@ -737,6 +738,7 @@ video[poster]{
     footer {    
         font-size: 1.5rem;
     }
+    
 
   }
 
