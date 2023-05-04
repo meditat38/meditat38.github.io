@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@nodetoy/three-nodetoy": "^0.1.35",
+    "three": "^0.152.2"
+  },
+  "devDependencies": {
+    "vite": "^4.3.4"
+  }
+}
