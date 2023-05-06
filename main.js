@@ -1,9 +1,9 @@
-import * as THREE from 'three';
+import * as THREE from './node_modules/three/build';
 //import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { NodeToyMaterial } from '@nodetoy/three-nodetoy';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { GLTFLoader } from './node_modules/three/addons/loaders/GLTFLoader.js';
+import { NodeToyMaterial } from './node_modules/@nodetoy/three-nodetoy';
+//import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+//import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 //import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 
 //Create a Three.JS Scene
@@ -79,9 +79,9 @@ camera.position.z = 200;
 //}
 
 //PostProcessing
-const composer = new EffectComposer(renderer)
-const renderPass = new RenderPass(scene, camera)
-composer.addPass(renderPass)
+//const composer = new EffectComposer(renderer)
+//const renderPass = new RenderPass(scene, camera)
+//composer.addPass(renderPass)
 //const bloomPass = new UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
 //bloomPass.threshold = 0.5;
 //bloomPass.strength = 0.3;
@@ -100,7 +100,8 @@ function animate() {
     object.rotation.y = -1.85 + mouseX/2 / window.innerWidth;
     object.rotation.x = -0.3 + mouseY/2 / window.innerHeight;
   }
-  composer.render()
+  //composer.render()
+  renderer.render(scene, camera);
   NodeToyMaterial.tick();
 }
 
