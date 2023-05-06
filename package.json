@@ -9,7 +9,9 @@
     "vite": "^4.3.4"
   },
   "scripts": {
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d ./dist",
+    "build": "vite build",
+    "preview": "vite preview"
   }
   
 }
