@@ -33,6 +33,7 @@ let objToRender = 'text';
 //let newMaterial = new NodeToyMaterial({
 //  url: "https://draft.nodetoy.co/gVik39zC4oHZnols"
 //});
+let newMaterial = new MeshNormalMaterial();
 
 //Instantiate a loader for the .gltf file
 const loader = new GLTFLoader();
@@ -43,9 +44,9 @@ loader.load(
   function (gltf) {
     //If the file is loaded, add it to the scene
     object = gltf.scene;
-    //object.traverse((o) => {
-    //  if (o.isMesh) o.material = newMaterial;
-    //});
+    object.traverse((o) => {
+      if (o.isMesh) o.material = newMaterial;
+    });
     scene.add(object);
   },
   function (xhr) {
