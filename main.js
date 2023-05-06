@@ -1,10 +1,14 @@
-import * as THREE from './node_modules/three/build';
+//import * as THREE from './node_modules/three/build';
+//import { GLTFLoader } from './node_modules/three/addons/loaders/GLTFLoader.js';
+//import { NodeToyMaterial } from './node_modules/@nodetoy/three-nodetoy';
+
 //import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { GLTFLoader } from './node_modules/three/addons/loaders/GLTFLoader.js';
-import { NodeToyMaterial } from './node_modules/@nodetoy/three-nodetoy';
 //import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 //import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 //import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+import * as THREE from "https://cdn.skypack.dev/three@0.129.0/build/three.module.js";
+import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
 
 //Create a Three.JS Scene
 const scene = new THREE.Scene();
@@ -27,9 +31,9 @@ let objToRender = 'text';
 
 
 //Add Node Toy material
-let newMaterial = new NodeToyMaterial({
-  url: "https://draft.nodetoy.co/gVik39zC4oHZnols"
-});
+//let newMaterial = new NodeToyMaterial({
+//  url: "https://draft.nodetoy.co/gVik39zC4oHZnols"
+//});
 
 //Instantiate a loader for the .gltf file
 const loader = new GLTFLoader();
@@ -40,9 +44,9 @@ loader.load(
   function (gltf) {
     //If the file is loaded, add it to the scene
     object = gltf.scene;
-    object.traverse((o) => {
-      if (o.isMesh) o.material = newMaterial;
-    });
+    //object.traverse((o) => {
+    //  if (o.isMesh) o.material = newMaterial;
+    //});
     scene.add(object);
   },
   function (xhr) {
