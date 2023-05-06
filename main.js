@@ -288,6 +288,15 @@ function fragmentShader() {
   }  
   `
 }
+let uniforms;
+
+uniforms.nodeUniform0 = {type: 'texture', value: "./images/noise.png"}
+uniforms.nodeUniform1 = {type: 'texture', value: "./images/noise.png"}
+uniforms.nodeUniform2 = {type: 'texture', value: "./images/noise.png"}
+uniforms.nodeUniform3 = {type: 'texture', value: "./images/noise.png"}
+uniforms.nodeUniform4 = {type: 'texture', value: "./images/noise.png"}
+uniforms.nodeUniform5 = {type: 'texture', value: "./images/noise.png"}
+uniforms.nodeUniform6 = {type: 'texture', value: "./images/noise.png"}
 let newMaterial =  new THREE.ShaderMaterial({
   uniforms: uniforms,
   fragmentShader: fragmentShader(),
@@ -369,7 +378,7 @@ function animate() {
   }
   //composer.render()
   renderer.render(scene, camera);
-  NodeToyMaterial.tick();
+  //NodeToyMaterial.tick();
 }
 
 //Add a listener to the window, so we can resize the window and the camera
