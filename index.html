@@ -36,11 +36,11 @@
 
                        
             <a href="#aboutHeadline">
-                <!-- <section class="hello hidden" id="hello">
+                <section class="hello hidden" id="hello">
                     <h1><b>Moritz Gnann</b></h1>
                     <h4>XR-Gamedevelopment and 3D in general.</h4>
-                </section> -->
-                <!-- <script id="vertexShader" type="x-shader/x-vertex">
+                </section>
+                <!-- <script id="vertexShader" type="x-shader/x-vertex">""
                     // Created with NodeToy | Three.js r149
 
                     // <node_builder>
@@ -672,7 +672,63 @@
 
 
 
-                    
+                    #if defined( USE_ENVMAP ) || defined( DISTANCE ) || defined ( USE_SHADOWMAP ) || defined ( USE_TRANSMISSION ) || NUM_SPOT_LIGHT_COORDS > 0
+
+                        vec4 worldPosition = vec4( transformed, 1.0 );
+
+                        #ifdef USE_INSTANCING
+
+                            worldPosition = instanceMatrix * worldPosition;
+
+                        #endif
+
+                        worldPosition = modelMatrix * worldPosition;
+
+                    #endif
+
+
+                    #ifdef USE_ENVMAP
+
+                        #ifdef ENV_WORLDPOS
+
+                            vWorldPosition = worldPosition.xyz;
+
+                        #else
+
+                            vec3 cameraToVertex;
+
+                            if ( isOrthographic ) {
+
+                                cameraToVertex = normalize( vec3( - viewMatrix[ 0 ][ 2 ], - viewMatrix[ 1 ][ 2 ], - viewMatrix[ 2 ][ 2 ] ) );
+
+                            } else {
+
+                                cameraToVertex = normalize( worldPosition.xyz - cameraPosition );
+
+                            }
+
+                            vec3 worldNormal = inverseTransformDirection( transformedNormal, viewMatrix );
+
+                            #ifdef ENVMAP_MODE_REFLECTION
+
+                                vReflect = reflect( cameraToVertex, worldNormal );
+
+                            #else
+
+                                vReflect = refract( cameraToVertex, worldNormal, refractionRatio );
+
+                            #endif
+
+                        #endif
+
+                    #endif
+
+
+                    #ifdef USE_FOG
+
+                        vFogDepth = - mvPosition.z;
+
+                    #endif
 
 
                     }
@@ -1276,8 +1332,8 @@
                         
                     </script> -->
                     
-                <section id="container3D"></section>
-                <script type="module" src="/main.js"></script>
+                <!-- <section id="container3D"></section>
+                <script type="module" src="/main.js"></script> -->
             </a>
             
             <a href="#headlineProjects">
