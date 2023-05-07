@@ -169,7 +169,7 @@ let newMaterial = new NodeToyMaterial({
 
 // //Load the file
  loader.load(
-   `models/${objToRender}/scene2.gltf`,
+   `/dist/models/${objToRender}/scene2.gltf`,
    function (gltf) {
      //If the file is loaded, add it to the scene
      object = gltf.scene;
