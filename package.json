@@ -1,17 +1,35 @@
 {
-  
+  
   "dependencies": {
-    "@nodetoy/three-nodetoy": "^0.1.35",
-    "gh-pages": "^5.0.0",
-    "three": "^0.152.2"
+  
+    
+  "@nodetoy/three-nodetoy": "^0.1.35",
+  
+    
+  "gh-pages": "^5.0.0",
+  
+    
+  "three": "^0.152.2"
+  
   },
+  
   "devDependencies": {
-    "vite": "^4.3.4"
+  
+    
+  "vite": "^4.3.4"
+  
   },
+  
   "scripts": {
-    "deploy": "gh-pages -d ./dist",
-    "build": "vite build",
-    "preview": "vite preview"
+  
+    
+  "deploy": "gh-pages -d ./dist",
+  
+    
+  "build": "vite build",
+  
+    
+  "preview": "vite preview"
+  
   }
-  
 }

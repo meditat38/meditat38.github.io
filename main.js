@@ -1,14 +1,15 @@
-//import * as THREE from './node_modules/three/build';
-//import { GLTFLoader } from './node_modules/three/addons/loaders/GLTFLoader.js';
-//import { NodeToyMaterial } from './node_modules/@nodetoy/three-nodetoy';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
 
 //import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 //import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 //import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 //import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 
-import * as THREE from "https://cdn.skypack.dev/three@0.129.0/build/three.module.js";
-import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
+//import * as THREE from "https://cdn.skypack.dev/three@0.129.0/build/three.module.js";
+//import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
+import { NodeToyMaterial } from '@nodetoy/three-nodetoy';
 
 //Create a Three.JS Scene
 const scene = new THREE.Scene();
@@ -30,33 +31,162 @@ let object;
 let objToRender = 'text';
 
 //Add Node Toy material
-//let newMaterial = new NodeToyMaterial({
-//  url: "https://draft.nodetoy.co/gVik39zC4oHZnols"
-//});
+let newMaterial = new NodeToyMaterial({
+  url: "https://draft.nodetoy.co/gVik39zC4oHZnols"
+});
 
-//Instantiate a loader for the .gltf file
-const loader = new GLTFLoader();
+//var vertCode = document.getElementById("vertexShader").textContent;
+//var fragCode = document.getElementById("fragmentShader").textContent;
+//const newMaterial = new THREE.ShaderMaterial( {
+// 	uniforms: [{
+//     "name": "_normalMatrix",
+//     "type": "mat3",
+//     "value": {
+//       "elements": [
+//         1,
+//         0,
+//         0,
+//         0,
+//         1,
+//         0,
+//         0,
+//         0,
+//         1
+//       ]
+//     }
+//   },
+//   {
+//     "name": "_viewMatrix",
+//     "type": "mat4",
+//     "value": {
+//       "elements": [
+//         1,
+//         0,
+//         0,
+//         0,
+//         0,
+//         1,
+//         0,
+//         0,
+//         0,
+//         0,
+//         1,
+//         0,
+//         0,
+//         0,
+//         0,
+//         1
+//       ]
+//     }
+//   },
+//   {
+//     "name": "nodeUniform3",
+//     "type": "texture",
+//     "value": "/images/noiseTexture.png"
+//   },
+//   {
+//     "name": "_time",
+//     "type": "float",
+//     "value": 0
+//   },
+//   {
+//     "name": "nodeUniform4",
+//     "type": "texture",
+//     "value": "/images/noiseTexture.png"
+//   },
+//   {
+//     "name": "nodeUniform5",
+//     "type": "texture",
+//     "value": "/images/noiseTexture.png"
+//   },
+//   {
+//     "name": "nodeUniform6",
+//     "type": "texture",
+//     "value": "/images/noiseTexture.png"
+//   },
+//   {
+//     "name": "_worldToObjMatrix",
+//     "type": "mat4",
+//     "value": {
+//       "elements": [
+//         1,
+//         0,
+//         0,
+//         0,
+//         0,
+//         1,
+//         0,
+//         0,
+//         0,
+//         0,
+//         1,
+//         0,
+//         0,
+//         0,
+//         0,
+//         1
+//       ]
+//     }
+//   },
+//   {
+//     "name": "_viewDir",
+//     "type": "vec3",
+//     "value": {
+//       "x": 0,
+//       "y": 0,
+//       "z": 0
+//     }
+//   },
+//   {
+//     "name": "nodeUniform0",
+//     "type": "texture",
+//     "value": "/images/noiseTexture.png"
+//   },
+//   {
+//     "name": "_time",
+//     "type": "float",
+//     "value": 1
+//   },
+//   {
+//     "name": "nodeUniform1",
+//     "type": "texture",
+//     "value": "/images/noiseTexture.png"
+//   },
+//   {
+//     "name": "nodeUniform2",
+//     "type": "texture",
+//     "value": "/images/noiseTexture.png"
+//   }],
+  
+ 	//vertexShader: document.getElementById( 'vertexShader' ).text,
+ 	//fragmentShader: document.getElementById( 'fragmentShader' ).text,
+   //vertexShader: vertCode, 
+   //fragmentShader: fragCode
+ //} );
 
-//Load the file
-loader.load(
-  `models/${objToRender}/scene2.gltf`,
-  function (gltf) {
-    //If the file is loaded, add it to the scene
-    object = gltf.scene;
-    //object.traverse((o) => {
-    //  if (o.isMesh) o.material = newMaterial;
-    //});
-    scene.add(object);
-  },
-  function (xhr) {
-    //While it is loading, log the progress
-    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-  },
-  function (error) {
-    //If there is an error, log it
-    console.error(error);
-  }
-);
+// //Instantiate a loader for the .gltf file
+ const loader = new GLTFLoader();
+
+// //Load the file
+ loader.load(
+   `models/${objToRender}/scene2.gltf`,
+   function (gltf) {
+     //If the file is loaded, add it to the scene
+     object = gltf.scene;
+     object.traverse((o) => {
+       if (o.isMesh) o.material = newMaterial;
+     });
+     scene.add(object);
+   },
+   function (xhr) {
+     //While it is loading, log the progress
+     console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+   },
+   function (error) {
+     //If there is an error, log it
+     console.error(error);
+   }
+ );
 
 
 //Instantiate a new renderer and set its size
@@ -105,7 +235,7 @@ function animate() {
   }
   //composer.render()
   renderer.render(scene, camera);
-  //NodeToyMaterial.tick();
+  NodeToyMaterial.tick();
 }
 
 //Add a listener to the window, so we can resize the window and the camera
