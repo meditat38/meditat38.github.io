@@ -1,175 +1,129 @@
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import * as THREE from "https://cdn.skypack.dev/three@0.129.0/build/three.module.js";
+import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
 
-
-//import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-//import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-//import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-//import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-
-//import * as THREE from "https://cdn.skypack.dev/three@0.129.0/build/three.module.js";
-//import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
-import { NodeToyMaterial } from '@nodetoy/three-nodetoy';
-
-//Create a Three.JS Scene
 const scene = new THREE.Scene();
-//scene.background = new THREE.Color(0x525252)
-//create a new camera with positions and angles
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-//Keep track of the mouse position, so we can make the eye move
+//Keep track of the mouse position, so we can make the object move
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
 
-//Keep the 3D object on a global variable so we can access it later
-let object;
 
-//OrbitControls allow the camera to move around the scene
-//let controls;
+let object;
+let object2;
 
 //Set which object to render
 let objToRender = 'text';
 
-//Add Node Toy material
-let newMaterial = new NodeToyMaterial({
-  url: "https://draft.nodetoy.co/gVik39zC4oHZnols"
-});
+function vertexShader() {
+  return `
+    varying vec2 vUv;
+    varying float noiseR;
+    varying float noiseG;
+    varying float noiseB;
+    varying float disp;
+    varying vec3 fNormal;
+    uniform sampler2D texture1;
+    uniform float dispScale;
+    uniform float size;
+    uniform float time;
+    uniform float offset;
+    varying vec3 vPositionW;
+		varying vec3 vNormalW;
+    uniform vec3 colorr;
+    varying vec3 vColor;
+    
+    void main() {
 
-//var vertCode = document.getElementById("vertexShader").textContent;
-//var fragCode = document.getElementById("fragmentShader").textContent;
-//const newMaterial = new THREE.ShaderMaterial( {
-// 	uniforms: [{
-//     "name": "_normalMatrix",
-//     "type": "mat3",
-//     "value": {
-//       "elements": [
-//         1,
-//         0,
-//         0,
-//         0,
-//         1,
-//         0,
-//         0,
-//         0,
-//         1
-//       ]
-//     }
-//   },
-//   {
-//     "name": "_viewMatrix",
-//     "type": "mat4",
-//     "value": {
-//       "elements": [
-//         1,
-//         0,
-//         0,
-//         0,
-//         0,
-//         1,
-//         0,
-//         0,
-//         0,
-//         0,
-//         1,
-//         0,
-//         0,
-//         0,
-//         0,
-//         1
-//       ]
-//     }
-//   },
-//   {
-//     "name": "nodeUniform3",
-//     "type": "texture",
-//     "value": "/images/noiseTexture.png"
-//   },
-//   {
-//     "name": "_time",
-//     "type": "float",
-//     "value": 0
-//   },
-//   {
-//     "name": "nodeUniform4",
-//     "type": "texture",
-//     "value": "/images/noiseTexture.png"
-//   },
-//   {
-//     "name": "nodeUniform5",
-//     "type": "texture",
-//     "value": "/images/noiseTexture.png"
-//   },
-//   {
-//     "name": "nodeUniform6",
-//     "type": "texture",
-//     "value": "/images/noiseTexture.png"
-//   },
-//   {
-//     "name": "_worldToObjMatrix",
-//     "type": "mat4",
-//     "value": {
-//       "elements": [
-//         1,
-//         0,
-//         0,
-//         0,
-//         0,
-//         1,
-//         0,
-//         0,
-//         0,
-//         0,
-//         1,
-//         0,
-//         0,
-//         0,
-//         0,
-//         1
-//       ]
-//     }
-//   },
-//   {
-//     "name": "_viewDir",
-//     "type": "vec3",
-//     "value": {
-//       "x": 0,
-//       "y": 0,
-//       "z": 0
-//     }
-//   },
-//   {
-//     "name": "nodeUniform0",
-//     "type": "texture",
-//     "value": "/images/noiseTexture.png"
-//   },
-//   {
-//     "name": "_time",
-//     "type": "float",
-//     "value": 1
-//   },
-//   {
-//     "name": "nodeUniform1",
-//     "type": "texture",
-//     "value": "/images/noiseTexture.png"
-//   },
-//   {
-//     "name": "nodeUniform2",
-//     "type": "texture",
-//     "value": "/images/noiseTexture.png"
-//   }],
-  
- 	//vertexShader: document.getElementById( 'vertexShader' ).text,
- 	//fragmentShader: document.getElementById( 'fragmentShader' ).text,
-   //vertexShader: vertCode, 
-   //fragmentShader: fragCode
- //} );
+      vUv = uv;
+      fNormal = normal;
+      vColor = colorr;
+
+      vec4 noiseTexR = texture2D( texture1, vec2(time+vUv.x*0.0,vUv.y*size) );
+      vec4 noiseTexG = texture2D( texture1, vec2(time+offset+vUv.x*0.0,vUv.y*size) );
+      vec4 noiseTexB = texture2D( texture1, vec2(time+offset+offset+vUv.x*0.0,vUv.y*size) );
+
+      noiseR = noiseTexR.r;
+      noiseG = noiseTexG.g;
+      noiseB = noiseTexB.b;
+      float noise = (noiseR + noiseG + noiseB) * 0.33333333;
+
+      disp = dispScale * (texture2D( texture1, vec2(time+vUv.x*0.0,vUv.y*0.1) ).r);
+      float disp2 = -1.5 * dispScale * (texture2D( texture1, vec2(time+offset+vUv.x*0.0,vUv.y*0.1) ).r);
+      float disp3 = (disp + disp2);
+
+
+      vec3 newPosition = position + normal * (noise * disp3);
+
+      gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
+
+      vPositionW = vec3( vec4( position, 1.0 ) * modelMatrix);
+		  vNormalW = normalize( vec3( vec4( normal, 0.0 ) * modelMatrix ) );
+
+    }
+  `
+}
+function fragmentShader() {
+  return `
+    varying vec2 vUv;
+    varying float noiseR;
+    varying float noiseG;
+    varying float noiseB;
+    varying vec3 fNormal;
+    uniform sampler2D texture1;
+    uniform float time;
+    uniform float offset;
+    uniform float size;
+    varying vec3 vPositionW;
+		varying vec3 vNormalW;
+    varying vec3 vColor;
+
+    void main( void ) {
+      vec4 noiseTexR = texture2D( texture1, vec2(time+vUv.x*0.0,vUv.y*size) );
+      vec4 noiseTexG = texture2D( texture1, vec2(time+offset+vUv.x*0.0,vUv.y*size) );
+      vec4 noiseTexB = texture2D( texture1, vec2(time+offset+offset+vUv.x*0.0,vUv.y*size) );
+
+      vec3 color = vec3(-noiseTexR.r+1.0, -noiseTexG.g+1.0, -noiseTexB.b+1.0);
+
+			vec3 viewDirectionW = normalize(cameraPosition - vPositionW);
+			float fresnelTerm = dot(viewDirectionW, vNormalW);
+			fresnelTerm = clamp(0.4 - fresnelTerm, 0., 1.);
+
+      gl_FragColor = vec4(color * fresnelTerm, 1.0 );
+
+    }
+  `
+}
+let newMaterial = new THREE.ShaderMaterial( {
+  uniforms: {
+    texture1: { type: "t", value: new THREE.TextureLoader().load('images/noise.png' ) },
+    dispScale: { type: "f", value: 8.0 },
+    size: { type: "f", value: 0.1 },
+    time: {type:"f", value: 0.0},
+    offset: {type:"f", value: 0.00075}
+  },
+  vertexShader: vertexShader(),
+  fragmentShader: fragmentShader()
+
+} );
+let newMaterial2 = new THREE.ShaderMaterial( {
+  uniforms: {
+    texture1: { type: "t", value: new THREE.TextureLoader().load('images/noise.png' ) },
+    dispScale: { type: "f", value: 2.0 },
+    size: { type: "f", value: 0.1 },
+    time: {type:"f", value: 0.0},
+    offset: {type:"f", value: 0.0005}
+  },
+  vertexShader: vertexShader(),
+  fragmentShader: fragmentShader()
+
+} );
+
 
 // //Instantiate a loader for the .gltf file
  const loader = new GLTFLoader();
-
-// //Load the file
  loader.load(
-   `models/${objToRender}/scene2.gltf`,
+   `models/${objToRender}/Headline.gltf`,
    function (gltf) {
      //If the file is loaded, add it to the scene
      object = gltf.scene;
@@ -188,9 +142,30 @@ let newMaterial = new NodeToyMaterial({
    }
  );
 
+ const loader2 = new GLTFLoader();
+ loader2.load(
+  `models/${objToRender}/Underline.gltf`,
+  function (gltf2) {
+    //If the file is loaded, add it to the scene
+    object2 = gltf2.scene;
+    object2.traverse((o2) => {
+      if (o2.isMesh) o2.material = newMaterial2;
+    });
+    scene.add(object2);
+  },
+  function (xhr) {
+    //While it is loading, log the progress
+    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+  },
+  function (error) {
+    //If there is an error, log it
+    console.error(error);
+  }
+);
+
 
 //Instantiate a new renderer and set its size
-const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 
@@ -198,45 +173,24 @@ renderer.setPixelRatio(window.devicePixelRatio);
 document.getElementById("container3D").appendChild(renderer.domElement);
 
 //Set how far the camera will be from the 3D model
-camera.position.z = 200;
-
-//Add lights to the scene, so we can actually see the 3D model
-//const topLight = new THREE.DirectionalLight(0xffffff, 40); // (color, intensity)
-//topLight.position.set(-100, 200, 500) //top-left-ish
-//topLight.castShadow = true;
-//scene.add(topLight);
-
-//This adds controls to the camera, so we can rotate / zoom it with the mouse
-//if (objToRender === "dino") {
-//  controls = new OrbitControls(camera, renderer.domElement);
-//}
-
-//PostProcessing
-//const composer = new EffectComposer(renderer)
-//const renderPass = new RenderPass(scene, camera)
-//composer.addPass(renderPass)
-//const bloomPass = new UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
-//bloomPass.threshold = 0.5;
-//bloomPass.strength = 0.3;
-//bloomPass.radius = 1;
-//composer.addPass(bloomPass)
-
-
-//Render the scene
-function animate() {
-  requestAnimationFrame(animate);
-  //Here we could add some code to update the scene, adding some automatic movement
-
-  //Make the eye move
-  if (object && objToRender === "text") {
-    //I've played with the constants here until it looked good 
-    object.rotation.y = -1.85 + mouseX/2 / window.innerWidth;
-    object.rotation.x = -0.3 + mouseY/2 / window.innerHeight;
+function SetCameraPosition(){
+  if (window.innerWidth > 1300){
+    camera.position.z = 200;
   }
-  //composer.render()
-  renderer.render(scene, camera);
-  NodeToyMaterial.tick();
+  if (window.innerWidth <= 1300 && window.innerWidth > 1000){
+    camera.position.z = 250;
+  }
+  if (window.innerWidth <= 1000 && window.innerWidth > 700){
+    camera.position.z = 300;
+  }
+  if (window.innerWidth <= 700 && window.innerWidth > 500){
+    camera.position.z = 400;
+  }
+  if (window.innerWidth <= 500){
+    camera.position.z = 500;
+  }
 }
+
 
 //Add a listener to the window, so we can resize the window and the camera
 window.addEventListener("resize", function () {
@@ -244,13 +198,33 @@ window.addEventListener("resize", function () {
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
+  
+  SetCameraPosition()
 });
 
 //add mouse position listener, so we can make the eye move
 document.onmousemove = (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
+};
+
+
+//Render the scene
+function animate() {
+  requestAnimationFrame(animate);
+
+  if (object && objToRender === "text"){
+    object.rotation.y = -1.85 + mouseX/2 / window.innerWidth;
+    object.rotation.x = -0.3 + mouseY/2 / window.innerHeight;
+    object2.rotation.y = -1.85 + mouseX/2 / window.innerWidth;
+    object2.rotation.x = -0.3 + mouseY/2 / window.innerHeight;
+  }
+
+  newMaterial.uniforms.time.value = newMaterial.uniforms.time.value + 0.00005;
+  newMaterial2.uniforms.time.value = newMaterial.uniforms.time.value + 0.00005;
+  renderer.render(scene, camera); 
 }
 
 //Start the 3D rendering
 animate();
+SetCameraPosition();
