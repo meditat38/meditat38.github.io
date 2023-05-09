@@ -23,10 +23,3 @@ const observer2 = new IntersectionObserver((entries2) => {
 
 const hiddenElements2 = document.querySelectorAll('.hidden2');
 hiddenElements2.forEach((el2) => observer2.observe(el2));
-
-document.body.addEventListener("pointermove", (e)=>{
-    const { currentTarget: el, clientX: x, clientY: y } = e;
-    const { top: t, left: l, width: w, height: h } = el.getBoundingClientRect();
-    el.style.setProperty('--posX',  x-l-w/2);
-    el.style.setProperty('--posY',  y-t-h/2);
-  })

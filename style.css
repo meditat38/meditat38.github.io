@@ -8,10 +8,7 @@
 body {
     background-color: rgb(54, 54, 54);
     height:100vh;
-    margin: 0;
-    --x: calc(var(--posX, 0) * 1px);
-    --y: calc(var(--posY, 0) * 1px);
-      
+    margin: 0;     
 } 
 .wrapper::-webkit-scrollbar {
     display: none; /* for Chrome, Safari, and Opera */
