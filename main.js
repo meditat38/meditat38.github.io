@@ -8,7 +8,6 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
 
-
 let object;
 let object2;
 
