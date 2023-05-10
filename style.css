@@ -166,7 +166,7 @@ body {
     transform: translateY(50%) translateZ(-5px) scale(1.5) rotateZ(20deg);
 }
 .bg2{
-    position: fixed;
+    position: absolute;
     transform: translateY(70%) translateZ(-10px) scale(2) rotateZ(20deg);
 }
 

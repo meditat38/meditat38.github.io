@@ -21,7 +21,7 @@ const loadingManager = new THREE.LoadingManager( () => {
   
 } );
 
-let noiseTexture = new THREE.TextureLoader().load('images/noise3.png' );
+let noiseTexture = new THREE.TextureLoader(loadingManager).load('images/noise3.png' );
 noiseTexture.wrapping = THREE.RepeatWrapping;
 
 function vertexShader() {
