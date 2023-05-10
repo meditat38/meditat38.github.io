@@ -156,17 +156,17 @@ body {
 }
 .Background svg{
     width: 100%;    
-    
+    opacity: 20%;
     -webkit-filter: invert(100%); /* safari 6.0 - 9.0 */
     filter: invert(100%);
-    opacity: 20%;
+    
 }
 .bg1{
     position: absolute;
     transform: translateY(50%) translateZ(-5px) scale(1.5) rotateZ(20deg);
 }
 .bg2{
-    position: absolute;
+    position: fixed;
     transform: translateY(70%) translateZ(-10px) scale(2) rotateZ(20deg);
 }
 
