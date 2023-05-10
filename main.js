@@ -11,8 +11,18 @@ let mouseY = window.innerHeight / 2;
 let object;
 let object2;
 
-//Set which object to render
-let objToRender = 'text';
+const loadingManager = new THREE.LoadingManager( () => {
+	
+  const loadingScreen = document.getElementById( 'loading-screen' );
+  loadingScreen.classList.add( 'fade-out' );
+  
+  // optional: remove loader from DOM via event listener
+  loadingScreen.addEventListener( 'transitionend', onTransitionEnd );
+  
+} );
+
+let noiseTexture = new THREE.TextureLoader().load('images/noise3.png' );
+noiseTexture.wrapping = THREE.RepeatWrapping;
 
 function vertexShader() {
   return `
@@ -38,17 +48,17 @@ function vertexShader() {
       fNormal = normal;
       vColor = colorr;
 
-      vec4 noiseTexR = texture2D( texture1, vec2(time+vUv.x*0.0,vUv.y*size) );
-      vec4 noiseTexG = texture2D( texture1, vec2(time+offset+vUv.x*0.0,vUv.y*size) );
-      vec4 noiseTexB = texture2D( texture1, vec2(time+offset+offset+vUv.x*0.0,vUv.y*size) );
+      vec4 noiseTexR = texture2D( texture1, vec2(0.5+time+vUv.x*0.0,vUv.y*size) );
+      vec4 noiseTexG = texture2D( texture1, vec2(0.5+time+offset+vUv.x*0.0,vUv.y*size) );
+      vec4 noiseTexB = texture2D( texture1, vec2(0.5+time+offset+offset+vUv.x*0.0,vUv.y*size) );
 
       noiseR = noiseTexR.r;
       noiseG = noiseTexG.g;
       noiseB = noiseTexB.b;
       float noise = (noiseR + noiseG + noiseB) * 0.33333333;
 
-      disp = dispScale * (texture2D( texture1, vec2(time+vUv.x*0.0,vUv.y*0.1) ).r);
-      float disp2 = -1.5 * dispScale * (texture2D( texture1, vec2(time+offset+vUv.x*0.0,vUv.y*0.1) ).r);
+      disp = dispScale * (texture2D( texture1, vec2(0.5+time+vUv.x*0.0,vUv.y*size) ).r);
+      float disp2 = -1.5 * dispScale * (texture2D( texture1, vec2(0.5+time+offset+vUv.x*0.0,vUv.y*size) ).r);
       float disp3 = (disp + disp2);
 
 
@@ -78,9 +88,9 @@ function fragmentShader() {
     varying vec3 vColor;
 
     void main( void ) {
-      vec4 noiseTexR = texture2D( texture1, vec2(time+vUv.x*0.0,vUv.y*size) );
-      vec4 noiseTexG = texture2D( texture1, vec2(time+offset+vUv.x*0.0,vUv.y*size) );
-      vec4 noiseTexB = texture2D( texture1, vec2(time+offset+offset+vUv.x*0.0,vUv.y*size) );
+      vec4 noiseTexR = texture2D( texture1, vec2(0.5+time+vUv.x*0.0,vUv.y*size) );
+      vec4 noiseTexG = texture2D( texture1, vec2(0.5+time+offset+vUv.x*0.0,vUv.y*size) );
+      vec4 noiseTexB = texture2D( texture1, vec2(0.5+time+offset+offset+vUv.x*0.0,vUv.y*size) );
 
       vec3 color = vec3(-noiseTexR.r+1.0, -noiseTexG.g+1.0, -noiseTexB.b+1.0);
 
@@ -95,9 +105,9 @@ function fragmentShader() {
 }
 let newMaterial = new THREE.ShaderMaterial( {
   uniforms: {
-    texture1: { type: "t", value: new THREE.TextureLoader().load('images/noise.png' ) },
+    texture1: { type: "t", value: noiseTexture },
     dispScale: { type: "f", value: 8.0 },
-    size: { type: "f", value: 0.1 },
+    size: { type: "f", value: 1.0 },
     time: {type:"f", value: 0.0},
     offset: {type:"f", value: 0.00075}
   },
@@ -107,9 +117,9 @@ let newMaterial = new THREE.ShaderMaterial( {
 } );
 let newMaterial2 = new THREE.ShaderMaterial( {
   uniforms: {
-    texture1: { type: "t", value: new THREE.TextureLoader().load('images/noise.png' ) },
+    texture1: { type: "t", value: noiseTexture },
     dispScale: { type: "f", value: 2.0 },
-    size: { type: "f", value: 0.1 },
+    size: { type: "f", value: 1.0 },
     time: {type:"f", value: 0.0},
     offset: {type:"f", value: 0.0005}
   },
@@ -120,9 +130,9 @@ let newMaterial2 = new THREE.ShaderMaterial( {
 
 
 // //Instantiate a loader for the .gltf file
- const loader = new GLTFLoader();
+ const loader = new GLTFLoader(loadingManager);
  loader.load(
-   `models/${objToRender}/Headline.gltf`,
+   `models/text/Headline.gltf`,
    function (gltf) {
      //If the file is loaded, add it to the scene
      object = gltf.scene;
@@ -141,9 +151,9 @@ let newMaterial2 = new THREE.ShaderMaterial( {
    }
  );
 
- const loader2 = new GLTFLoader();
+ const loader2 = new GLTFLoader(loadingManager);
  loader2.load(
-  `models/${objToRender}/Underline.gltf`,
+  `models/text/Underline.gltf`,
   function (gltf2) {
     //If the file is loaded, add it to the scene
     object2 = gltf2.scene;
@@ -207,23 +217,36 @@ document.onmousemove = (e) => {
   mouseY = e.clientY;
 };
 
+let timer = 0.0;
 
 //Render the scene
 function animate() {
   requestAnimationFrame(animate);
-
-  if (object && objToRender === "text"){
+  if (object && object2){
     object.rotation.y = -1.85 + mouseX/2 / window.innerWidth;
     object.rotation.x = -0.3 + mouseY/2 / window.innerHeight;
     object2.rotation.y = -1.85 + mouseX/2 / window.innerWidth;
     object2.rotation.x = -0.3 + mouseY/2 / window.innerHeight;
   }
-
-  newMaterial.uniforms.time.value = newMaterial.uniforms.time.value + 0.00005;
-  newMaterial2.uniforms.time.value = newMaterial.uniforms.time.value + 0.00005;
+  
+  timer = timer + 0.00005;
+  if (timer >= 0.49){
+    timer = 0.0;
+  }
+  newMaterial.uniforms.time.value = timer;
+  newMaterial2.uniforms.time.value = timer;
   renderer.render(scene, camera); 
 }
 
+
+
 //Start the 3D rendering
-animate();
 SetCameraPosition();
+animate();
+
+function onTransitionEnd( event ) {
+
+	event.target.remove();
+	
+}
+

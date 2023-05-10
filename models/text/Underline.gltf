@@ -3,13 +3,6 @@
         "generator" : "Khronos glTF Blender I/O v3.3.27",
         "version" : "2.0"
     },
-    "extensionsUsed" : [
-        "KHR_materials_unlit",
-        "KHR_texture_transform"
-    ],
-    "extensionsRequired" : [
-        "KHR_texture_transform"
-    ],
     "scene" : 0,
     "scenes" : [
         {
@@ -28,29 +21,16 @@
     "materials" : [
         {
             "doubleSided" : true,
-            "extensions" : {
-                "KHR_materials_unlit" : {}
-            },
-            "name" : "Material.003",
+            "name" : "Material.001",
             "pbrMetallicRoughness" : {
-                "baseColorTexture" : {
-                    "extensions" : {
-                        "KHR_texture_transform" : {
-                            "offset" : [
-                                1.8999998569488525,
-                                -3.3999998569488525
-                            ],
-                            "scale" : [
-                                0,
-                                1
-                            ]
-                        }
-                    },
-                    "index" : 0,
-                    "texCoord" : 0
-                },
+                "baseColorFactor" : [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929,
+                    1
+                ],
                 "metallicFactor" : 0,
-                "roughnessFactor" : 0.9
+                "roughnessFactor" : 0.5
             }
         }
     ],
@@ -69,19 +49,6 @@
                     "material" : 0
                 }
             ]
-        }
-    ],
-    "textures" : [
-        {
-            "sampler" : 0,
-            "source" : 0
-        }
-    ],
-    "images" : [
-        {
-            "mimeType" : "image/png",
-            "name" : "noisee",
-            "uri" : "noisee.png"
         }
     ],
     "accessors" : [
@@ -157,12 +124,6 @@
             "byteLength" : 49806,
             "byteOffset" : 200800,
             "target" : 34963
-        }
-    ],
-    "samplers" : [
-        {
-            "magFilter" : 9729,
-            "minFilter" : 9987
         }
     ],
     "buffers" : [
